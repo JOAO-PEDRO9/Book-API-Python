@@ -1,1 +1,0 @@
-# Nenhum requisito adicional por enquanto, pois estamos usando a biblioteca padrão do Python.
