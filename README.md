@@ -11,3 +11,5 @@ API simples em Python puro para manipulação de livros com CI/CD via GitHub Act
 ```bash
 python server.py
 ```
+
+Deploy automático testado com sucesso!
