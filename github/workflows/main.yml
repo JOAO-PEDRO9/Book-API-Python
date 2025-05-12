@@ -27,7 +27,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test compile
         run: |
-          python -m py_compile server.py # Verifica se o código compila [cite: 5]
+          python -m py_compile server.py # Verifica se o código compila
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -36,6 +36,6 @@ jobs:
       - name: Deploy to Render
         uses: render-oss/github-action@v1
         with:
-          render-token: ${{ secrets.RENDER_API_KEY }}  # Configure este segredo no GitHub
-          service-id: ${{ secrets.RENDER_SERVICE_ID }} # Configure este segredo no GitHub
+          render-token: ${{ secrets.RENDER_API_KEY }}  # Ou use render-deploy-hook-url
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
           clear-cache: true
