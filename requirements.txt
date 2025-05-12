@@ -1,2 +1,1 @@
-# Não há dependências externas neste projeto, então o arquivo pode estar vazio.
-# Se você adicionar bibliotecas, liste-as aqui (ex: Flask, etc.)
+# Por enquanto, vazio
