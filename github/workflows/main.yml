@@ -1,0 +1,41 @@
+name: CI/CD de API de Livros
+
+on:
+  push:
+    branches:
+      - main  # Ou sua branch principal
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9  # Ou a versão do Python que você está usando
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Se você tiver dependências
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          # Stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Exit-zero treats all flake8 errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Test compile
+        run: |
+          python -m py_compile server.py # Verifica se o código compila [cite: 5]
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Render
+        uses: render-oss/github-action@v1
+        with:
+          render-token: ${{ secrets.RENDER_API_KEY }}  # Configure este segredo no GitHub
+          service-id: ${{ secrets.RENDER_SERVICE_ID }} # Configure este segredo no GitHub
+          clear-cache: true
