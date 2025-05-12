@@ -1,8 +1,4 @@
-Book-API-Python/
-├── app.py
-├── requirements.txt  ← aqui!
-├── config/
-│   └── database.py
-├── models/
-│   └── book_model.py
-└── .env  (opcional)
+fastapi
+uvicorn
+sqlalchemy
+python-dotenv
